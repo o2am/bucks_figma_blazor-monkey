@@ -1,0 +1,127 @@
+﻿@page "/faq"
+
+<div class="landing-bg">
+    <img src="content/Faq bg.png" class="fill-container" />
+
+    <NavBar BackgroundColor="#180431"/>
+    <div class="polka-dot" style="left: 30%; top: 25%">○</div>
+    <div class="polka-dot" style="left: 28%; top: 45%">○</div>
+
+    <div class="polka-dot" style="color: #E91D64; left: 21%; top: 3%">●</div>
+    <div class="polka-dot" style="color: #9C28B1; left: 41%; top: 12%">●</div>
+    <div class="polka-dot" style="color: #DE1512; left: 88%; top: 15%">●</div>
+    <div class="polka-dot" style="color: #4CB050; left: 2%; top: 20%">●</div>
+    <div class="polka-dot" style="color: #E91D64; left: 10%; top: 65%">●</div>
+    <div class="polka-dot" style="color: #384BFF; left: 60%; top: 85%">●</div>
+
+    <div style="margin-left:10%; margin:4%; position: absolute">
+        <div class="text-header" style="">Frequently Asked Questions</div>
+        <div style="display: flex; flex-direction: row; margin-left: -2%; ">
+            <div class="faq-container" style="z-index: 1">
+                <FAQQuestion Question="What is a Hackathon?" Answer="Hackathons are events where people collaborate to create software and hardware projects. The Bucks County Hackathon will generally involve, but is not limited to, websites and mobile applications!" />
+                <FAQQuestion Question="How do I get started on my project?" Answer="We highly recommend reaching out to the organization that you are collaborating with to develop your project! Different organizations have different needs, and you want your project to be optimized to help them!" />
+                <FAQQuestion Question="When is the Bucks County Hackathon?" Answer="FINISH THIS" />
+                <FAQQuestion Question="What exactly should my project look like?" Answer="Projects will vary by team! Different organizations have different needs— a volunteer group might need an app to track hours, while a nonprofit might need a social media strategy or a website. Reach out to your organization for their input!" />
+                <FAQQuestion Question="What’s the cost?" Answer="Everything from registration to submission is totally free!" />
+                <FAQQuestion Question="How do I submit my project?" Answer="We will open a page for submissions as we draw closer to the deadline! Contestants will submit using a git provider like GitHub." />
+            </div>
+            <a href="https://discord.gg/Q2EYt89WCg" style="text-decoration: none; z-index: 1">
+                <div style="flex: 1; width: 20vw; height: 29.15vw; background-color: #635AD9; border-style: solid; border-radius: 30px; margin-top: 60px">
+                    <div class="discord-content" style="text-align: center; font-size: 1.7vw; color: white;">Join our Discord for updates, tips, and tricks!</div>
+                    <img class="discord-content" style="padding-top: 0" src="content/discord-mark-white.svg" />
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="svg-align-top-right">
+        <img src="content/image 310.svg" />
+    </div>
+    <div class="svg-align-bottom-left">
+        <img src="content/image 311.svg" />
+    </div>
+</div>
+
+<CountDown/>
+
+<Footer/>
+
+<style>
+    .polka-dot {
+        position: absolute;
+        font-weight: 500;
+        font-size: 30px;
+        color: red;
+    }
+
+    .svg-align-bottom-left, .svg-align-top-right {
+        display: flex;
+        width: 100%;
+        height: 100vh;
+        margin: 0;
+        position: absolute;
+    }
+
+    .svg-align-bottom-left {
+        align-items: flex-end;
+        justify-content: flex-start;
+    }
+
+    .svg-align-top-right {
+        align-items: flex-start;
+        justify-content: flex-end;
+    }
+
+    .discord-content {
+        padding: 3vw;
+        cursor: pointer;
+    }
+
+    .faq-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: auto;
+        gap: 10px;
+        height: 100%;
+        overflow-y: auto; 
+        padding: 10px;
+    }
+
+    .landing-bg {
+        display: inline-block;
+        width: 100%;
+        height: 100vh;
+        position: relative;
+    }
+
+    .icon, .icon-small {
+        position: absolute;
+    }
+
+    .icon-small {
+        transform: scale(75%);
+    }
+
+    .fill-container {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        aspect-ratio: 960/391;
+    }
+
+    .text-generic {
+        position: absolute;
+        font-weight: 500;
+        font-size: 1.2vw;
+        position: relative;
+    }
+
+    .text-header {
+        font-size: 2.4vw;
+        font-weight: 800;
+        position: relative;
+        color: black;
+    }
+</style>

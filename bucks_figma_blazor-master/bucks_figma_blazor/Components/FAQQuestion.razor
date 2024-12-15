@@ -1,0 +1,47 @@
+﻿<div style="display: inline-grid; width: 30vw; margin: 30px; margin-bottom: 0px">
+    <div style="display: flex; flex-direction: row">
+        <div class="small-box" onclick="@(() => Toggle())">@IconString</div>
+        <div style="color:black; font-size: 1vw; font-weight: 800; padding-top: 13px">@Question</div>
+    </div>
+
+    @if (Open)
+    {
+        <div style="color: #504E4E; line-break: normal; width: contain; font-size: 1.1vw;">
+            @Answer
+        </div>
+    }
+
+   
+</div>
+
+<style>
+    .small-box {
+        width: 40px;
+        height: 40px;
+        border-width: 2px;
+        border-radius: 8px;
+        background-color: #635AD9;
+        margin: 5px;
+        margin-left: 0%;
+        cursor: pointer;
+        text-align: center;
+        font-size: 22px;
+        user-select: none;
+    }
+</style>
+
+@code {
+    [Parameter]
+    public string? Question { get; set; }
+    [Parameter]
+    public string? Answer { get; set; }
+
+    public string IconString = "+";
+    public bool Open = false;
+
+    public void Toggle()
+    {
+        Open = !Open;
+        IconString = Open ? "-" : "+";
+    }
+}

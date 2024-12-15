@@ -1,0 +1,72 @@
+﻿<div class="top-nav">
+    <a href="/" class="@_classes[0]" onmouseover="@(() => On(0))" onmouseout="@(() => Off(0))">
+        <span>Home</span>
+    </a>
+    <a href="faq" class="@_classes[1]" onmouseover="@(() => On(1))" onmouseout="@(() => Off(1))">
+        <span>Faq</span>
+    </a>
+    <a href="registration" class="@_classes[2]" onmouseover="@(() => On(2))" onmouseout="@(() => Off(2))">
+        <span>Registration</span>
+    </a>
+</div>
+
+
+<style>
+    .top-nav {
+        display: flex;
+        flex-direction: row;
+        margin-left: 60%;
+        color: white;
+        position: absolute;
+        padding: 20px;
+        gap: 20px;
+        z-index: 1;
+    }
+
+        .top-nav a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+            .top-nav a:focus {
+                outline: none;
+            }
+
+            .top-nav a:hover {
+                color: white;
+            }
+
+    .nav-button, .nav-button-over {
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 50px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: @BackgroundColor;
+        transition: background-image 0.4s ease-in-out;
+    }
+
+    .nav-button-over {
+        background-image: linear-gradient(to right, rgba(192, 31, 252, @(opacity)), rgba(3, 128, 236, @(opacity)));
+    }
+</style>
+
+@code {
+    [Parameter]
+    public string BackgroundColor { get; set; } = "transparent";
+
+    float opacity = 1f;
+
+    private string[] _classes = new string[3] { "nav-button", "nav-button", "nav-button" };
+
+    void On(int x)
+    {
+        _classes[x] = "nav-button-over";
+    }
+
+    void Off(int x)
+    {
+        _classes[x] = "nav-button";
+    }
+}

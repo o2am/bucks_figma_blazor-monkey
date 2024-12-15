@@ -1,0 +1,71 @@
+﻿@using bucks_figma_blazor.Components;
+
+<div style="height: fit-content; display: flex; align-items: center; flex-direction: column">
+        <div class="large-pill">
+            <div style="display:flex; flex-direction: column">
+                <div>@GetFormattedTime()</div>
+                <div style="display:flex; flex-direction: row; justify-content: center; align-items: center">
+                    <div class="timer-info">Days</div>
+                    <div class="timer-info">Hours</div>
+                    <div class="timer-info">Minutes</div>
+                </div>
+            </div>
+        </div>
+    <div class="gradient">
+        until submission deadline
+    </div>
+</div>
+
+<style>
+    .gradient {
+        font-size: 4vw;
+        font-weight: 800;
+        margin: 2%;
+        background-image: linear-gradient(to left, #C01FFC, #0380EC);
+        background-clip: text;
+        color: transparent;
+    }
+
+    .timer-info {
+        font-size: 2vw;
+        flex: 1;
+        left: 50%;
+        right: 50%;
+        padding-left: 10%;
+    }
+
+    .large-pill {
+        margin-left: 15%;
+        margin-right: 15%;
+        margin-top: 5%;
+        color: white;
+        width: 70vw;
+        aspect-ratio: 5/2;
+        border-radius: 8vw;
+        font-size: 8vw;
+        font-weight: 800;
+        background-image: linear-gradient(to right, #C01FFC, #0380EC);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
+@code {
+    static readonly DateTime _nexTime = new DateTime(2024, 12, 25);
+    
+    protected override async Task OnInitializedAsync()
+    {
+        while(true)
+        {
+            await Task.Delay(1000 * 60);
+            StateHasChanged();
+        }
+    }
+
+    string GetFormattedTime()
+    {
+        var timeSpan = _nexTime - DateTime.Now;
+        return $"{timeSpan.Days:00} : {timeSpan.Hours:00} : {timeSpan.Minutes:00}";
+    }
+}

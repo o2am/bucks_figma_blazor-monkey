@@ -1,0 +1,75 @@
+﻿<div class="@Class" style="@Style">
+    <div style="display: flex; flex-direction: row">
+        @if (Heading is not null)
+        {
+            <div>@Heading</div>
+        }
+
+        <div style="font-size: 10px; color: red; margin-top: auto; margin-left: auto;">@(_errorMessage is null ? " " : $"*{_errorMessage}")</div>
+    </div>
+    <input type="@(Type == FormItemType.Text ? "text" : "number")" placeholder="@Watermark" class="form-text" value="@Default" @onchange="OnChange">
+</div>
+
+<style>
+    .form-text {
+        font-size: medium;
+        padding: 2px;
+        width: 100%;
+        color:black;
+    }
+</style>
+
+@code {
+    [Parameter]
+    public FormItemType Type { get; set; } = FormItemType.Text;
+    [Parameter]
+    public string Class { get; set; } = string.Empty;
+    [Parameter]
+    public string Style { get; set; } = string.Empty;
+    [Parameter]
+    public string Watermark { get; set; } = string.Empty;
+    [Parameter]
+    public string? Heading { get; set; }
+    [Parameter]
+    public string? Default { get; set; }
+
+    [Parameter] 
+    public EventCallback<string> ValueChanged { get; set; }
+
+    private string? _errorMessage = null;
+
+    protected override void OnInitialized()
+    {
+        OnChange(new ChangeEventArgs() { Value = Default });
+        base.OnInitialized();
+    }
+
+    [Parameter]
+    public ValidateInputDelegate Validator { get; set; } = (string newVal, out string? y) =>
+    {
+        y = null;
+        return true;
+    };
+
+    public delegate bool ValidateInputDelegate(string newValue, out string? errorMessage);
+
+    private void OnChange(ChangeEventArgs eventArgs)
+    {
+        string strInput = eventArgs.Value as string ?? "";
+        if(!Validator(strInput, out string? error))
+        {
+            _errorMessage = error;
+        }
+        else
+        {
+            _errorMessage = null;
+            ValueChanged.InvokeAsync(strInput);
+        }
+    }
+
+    public enum FormItemType
+    {
+        Integer,
+        Text,
+    }
+}
